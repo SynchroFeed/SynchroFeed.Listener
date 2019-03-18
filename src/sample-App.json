@@ -1,0 +1,149 @@
+{
+  "ConnectionStrings": {
+    "SynchroFeed_Catalog": "data source=MYSQLSERVER;initial catalog=Feeds;integrated security=True;MultipleActiveResultSets=True;App=SynchroFeed_Listener"
+  },
+  "AwsSettings": {
+    "Credentials": {
+      "Type": "Basic",
+      "AccessKey": "MyAWSAccessKey",
+      "SecretKey": "MyAWSSecretKey"
+    },
+    "Sqs": {
+      "Name": "AWSSqsQueueName",
+      "Region": "us-east-1"
+    }
+  },
+  "FeedSettings": {
+    "SettingsGroups": {
+      "primary.myfeedserver.com": {
+        "ApiKey": "primary.myfeedserverApiKey",
+        "DeleteFromTarget": true
+      },
+      "mirror.myfeedserver.com": {
+        "ApiKey": "mirror.myfeedserver.com",
+        "DeleteFromTarget": true
+      },
+      "catalogDatabaseSettings": {
+        "ConnectionStringName": "SynchroFeed_Catalog",
+        "CreateDatabaseIfNotFound": "true"
+      },
+      "Slack": {
+        "Url": "https://hooks.slack.com/services/myslackchannelapi",
+        "MessageTemplate-ActionStarted": "{\"attachments\": [{\"fallback\": \"Starting {Action.ActionSettings.Name}\",\"color\": \"good\",\"pretext\": \"Package Validation\",\"title\": \"Starting {Action.ActionSettings.Name}\"}]}",
+        "MessageTemplate-ActionCompleted": "{\"attachments\": [{\"fallback\": \"Completed {Action.ActionSettings.Name}\",\"color\": \"good\",\"pretext\": \"Package Validation\",\"title\": \"Completed {Action.ActionSettings.Name}\"}]}"
+      }
+    },
+    "Feeds": [
+      {
+        "Name": "primary.library",
+        "Type": "proget",
+        "SettingsGroup": "primary.myfeedserver.com",
+        "Settings": {
+          "Uri": "https://primary.myfeedserver.com/nuget/library/"
+        }
+      },
+      {
+        "Name": "mirror.library",
+        "Type": "proget",
+        "SettingsGroup": "mirror.myfeedserver.com",
+        "Settings": {
+          "Uri": "https://mirror.myfeedserver.com/nuget/library/"
+        }
+      },
+      {
+        "Name": "local.library",
+        "Type": "Directory",
+        "Settings": {
+          "Uri": "C:\\localrepo\\nuget\\library\\"
+        }
+      }
+    ],
+    "Actions": [
+      {
+        "Name": "Catalog primary.library",
+        "Type": "Process",
+        "SourceFeed": "primary.library",
+        "IncludePrerelease": false,
+        "OnlyLatestVersion": false,
+        "Enabled": true,
+        "Commands": [
+          {
+            "Type": "Catalog",
+            "SettingsGroup": "catalogDatabaseSettings"
+          }
+        ],
+        "Observers": [
+          {
+            "Name": "WebPost",
+            "SettingsGroup": "Slack",
+            "Settings": {
+              "MessageTemplate-ActionCommandSuccess": "{\"attachments\": [{\"fallback\": \"{Package.ID} added to {Action.ActionSettings.SourceFeed}\",\"color\": \"good\",\"pretext\": \"Package Added to Feed\",\"title\": \"{Package.ID}\",\"title_link\": \"{Package.PackageUrl}\",\"text\": \"{Message}\",\"fields\": [{\"title\": \"Version\",\"value\": \"{Package.Version}\",\"short\": true},{\"title\": \"Feed\",\"value\": \"{Action.ActionSettings.SourceFeed}\",\"short\": true}]}]}"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Audit primary.library for 32-bit applications",
+        "Type": "Process",
+        "SourceFeed": "primary.library",
+        "IncludePrerelease": true,
+        "OnlyLatestVersion": true,
+        "Enabled": true,
+        "PackagesToIgnore": [
+          "My32bitPackage",
+          "MyOther32bitPackage"
+        ],
+        "Commands": [
+          {
+            "Type": "ApplicationIs64Bit"
+          }
+        ],
+        "Observers": [
+          {
+            "Name": "WebPost",
+            "SettingsGroup": "Slack",
+            "Settings": {
+              "MessageTemplate-ActionCommandFailed": "{\"attachments\": [{\"fallback\": \"{Package.ID} contains a 32-bit application\",\"color\": \"danger\",\"pretext\": \"Package Validation\",\"title\": \"{Package.ID}\",\"title_link\": \"{Package.PackageUrl}\",\"text\": \"{Message}\",\"fields\": [{\"title\": \"Version\",\"value\": \"{Package.Version}\",\"short\": true},{\"title\": \"Feed\",\"value\": \"{Action.ActionSettings.SourceFeed}\",\"short\": true}]}]}"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Sync primary.library to mirror.library",
+        "Type": "Sync",
+        "SourceFeed": "primary.library",
+        "TargetFeed": "mirror.library",
+        "IncludePrerelease": false,
+        "OnlyLatestVersion": false,
+        "Enabled": true,
+        "Observers": [
+          {
+            "Name": "WebPost",
+            "SettingsGroup": "Slack",
+            "Settings": {
+              "MessageTemplate-ActionPackageSuccess": "{\"attachments\": [{\"fallback\": \"{Package.ID} synced to {Action.ActionSettings.TargetFeed}\",\"color\": \"good\",\"pretext\": \"Package Synced from {Action.ActionSettings.SourceFeed}\",\"title\": \"{Package.ID}\",\"title_link\": \"{Package.PackageUrl}\",\"text\": \"{Message}\",\"fields\": [{\"title\": \"Version\",\"value\": \"{Package.Version}\",\"short\": true},{\"title\": \"Feed\",\"value\": \"{Action.ActionSettings.TargetFeed}\",\"short\": true}]}]}"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Sync primary.library to local.library",
+        "Type": "Sync",
+        "SourceFeed": "primary.library",
+        "TargetFeed": "local.library",
+        "OnlyLatestVersion": false,
+        "IncludePrerelease": false,
+        "Enabled": true,
+        "Observers": [
+          {
+            "Name": "WebPost",
+            "SettingsGroup": "Slack",
+            "Settings": {
+              "MessageTemplate-ActionPackageSuccess": "{\"attachments\": [{\"fallback\": \"{Package.ID} synced to {Action.ActionSettings.TargetFeed}\",\"color\": \"good\",\"pretext\": \"Package Synced from {Action.ActionSettings.SourceFeed}\",\"title\": \"{Package.ID}\",\"title_link\": \"{Package.PackageUrl}\",\"text\": \"{Message}\",\"fields\": [{\"title\": \"Version\",\"value\": \"{Package.Version}\",\"short\": true},{\"title\": \"Feed\",\"value\": \"{Action.ActionSettings.TargetFeed}\",\"short\": true}]}]}"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "solution": "SynchroFeed.Listener.sln",
+  "mappings": {
+    "SynchroFeed.Action.Process": "../SynchroFeed.Core/src/SynchroFeed.Action.Process/SynchroFeed.Action.Process.csproj",
+    "SynchroFeed.Action.Sync": "../SynchroFeed.Core/src/SynchroFeed.Action.Sync/SynchroFeed.Action.Sync.csproj",
+    "SynchroFeed.Library": "../SynchroFeed.Core/src/SynchroFeed.Library/SynchroFeed.Library.csproj",
+    "SynchroFeed.ActionObserver.WebPost": "../SynchroFeed.Core/src/SynchroFeed.ActionObserver.WebPost/SynchroFeed.ActionObserver.WebPost.csproj",
+    "SynchroFeed.Command.ApplicationIs64bit": "../SynchroFeed.Core/src/SynchroFeed.Command.ApplicationIs64bit/SynchroFeed.Command.ApplicationIs64bit.csproj",
+    "SynchroFeed.Command.Catalog": "../SynchroFeed.Core/src/SynchroFeed.Command.Catalog/SynchroFeed.Command.Catalog.csproj",
+    "SynchroFeed.Repository.Directory": "../SynchroFeed.Core/src/SynchroFeed.Repository.Directory/SynchroFeed.Repository.Directory.csproj",
+    "SynchroFeed.Repository.Nuget": "../SynchroFeed.Core/src/SynchroFeed.Repository.Nuget/SynchroFeed.Repository.Nuget.csproj",
+    "SynchroFeed.Repository.Proget": "../SynchroFeed.Core/src/SynchroFeed.Repository.Proget/SynchroFeed.Repository.Proget.csproj"
+  }
+}
