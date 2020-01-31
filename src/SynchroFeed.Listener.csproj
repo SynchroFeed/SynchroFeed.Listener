@@ -31,18 +31,18 @@
     <PackageReference Include="AWSSDK.SQS" Version="3.3.102.60" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.1" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.6.1" />
-    <PackageReference Include="SynchroFeed.Action.Process" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Action.Sync" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.ActionObserver.WebPost" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Command.ApplicationIs64bit" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Command.Catalog" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Command.ConfigReview" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Command.Log4netReview" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Command.NugetContainsSupportFiles" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Command.VersioningCheck" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Repository.Directory" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Repository.Nuget" Version="0.0.94" />
-    <PackageReference Include="SynchroFeed.Repository.Proget" Version="0.0.94" />
+    <PackageReference Include="SynchroFeed.Action.Process" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Action.Sync" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.ActionObserver.WebPost" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Command.ApplicationIs64bit" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Command.Catalog" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Command.ConfigReview" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Command.Log4netReview" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Command.NugetContainsSupportFiles" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Command.VersioningCheck" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Repository.Directory" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Repository.Nuget" Version="0.0.95" />
+    <PackageReference Include="SynchroFeed.Repository.Proget" Version="0.0.95" />
     <PackageReference Include="Topshelf" Version="4.2.1" />
   </ItemGroup>
   <ItemGroup>
