@@ -223,7 +223,7 @@ namespace SynchroFeed.Listener
                 }
                 catch(Exception ex)
                 {
-                    Logger.LogError("Error processing message", ex);
+                    Logger.LogError("Error processing message: {0}", ex);
                 }
             }
 
