@@ -10,5 +10,57 @@
     "SynchroFeed.Repository.Directory": "../SynchroFeed.Core/src/SynchroFeed.Repository.Directory/SynchroFeed.Repository.Directory.csproj",
     "SynchroFeed.Repository.Nuget": "../SynchroFeed.Core/src/SynchroFeed.Repository.Nuget/SynchroFeed.Repository.Nuget.csproj",
     "SynchroFeed.Repository.Proget": "../SynchroFeed.Core/src/SynchroFeed.Repository.Proget/SynchroFeed.Repository.Proget.csproj"
-  }
+  },
+  "restore": [
+    {
+      "name": "SynchroFeed.Listener",
+      "packages": [
+        {
+          "packageName": "SynchroFeed.Action.Process",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Action.Sync",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Library",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.ActionObserver.WebPost",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Command.ApplicationIs64bit",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Command.Catalog",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Repository.Directory",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Repository.Nuget",
+          "version": "0.0.56"
+        },
+        {
+          "packageName": "SynchroFeed.Repository.Proget",
+          "version": "0.0.56"
+        }
+      ]
+    },
+    {
+      "name": "Alkami.SynchroFeed.Whitesource",
+      "packages": [
+        {
+          "packageName": "SynchroFeed.Library",
+          "version": "0.0.56"
+        }
+      ]
+    }
+  ]
 }
