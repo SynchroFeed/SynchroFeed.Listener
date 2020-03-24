@@ -41,6 +41,7 @@
     <PackageReference Include="SynchroFeed.Command.NugetContainsSupportFiles" Version="0.0.101" />
     <PackageReference Include="SynchroFeed.Command.VersioningCheck" Version="0.0.101" />
     <PackageReference Include="SynchroFeed.Repository.Directory" Version="0.0.101" />
+    <PackageReference Include="SynchroFeed.Repository.Npm" Version="0.0.101" />
     <PackageReference Include="SynchroFeed.Repository.Nuget" Version="0.0.101" />
     <PackageReference Include="SynchroFeed.Repository.Proget" Version="0.0.101" />
     <PackageReference Include="Topshelf" Version="4.2.1" />
