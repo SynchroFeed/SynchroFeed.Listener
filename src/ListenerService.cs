@@ -41,8 +41,8 @@ using SynchroFeed.Library.Processor;
 using SynchroFeed.Library.Settings;
 using SynchroFeed.Listener.Model;
 using SynchroFeed.Listener.Settings;
-using SNS=Amazon.SimpleNotificationService;
-using SQS=Amazon.SQS;
+using SNS = Amazon.SimpleNotificationService;
+using SQS = Amazon.SQS;
 
 namespace SynchroFeed.Listener
 {
@@ -66,10 +66,10 @@ namespace SynchroFeed.Listener
         /// <param name="loggerFactory">The logger factory.</param>
         /// <param name="awsSettings">The AWS settings.</param>
         /// <param name="applicationSettings">The application settings.</param>
-        public ListenerService(IServiceProvider serviceProvider, 
-                                IActionProcessor actionProcessor, 
-                                ILoggerFactory loggerFactory, 
-                                AwsSettings awsSettings, 
+        public ListenerService(IServiceProvider serviceProvider,
+                                IActionProcessor actionProcessor,
+                                ILoggerFactory loggerFactory,
+                                AwsSettings awsSettings,
                                 ApplicationSettings applicationSettings)
         {
             ServiceProvider = serviceProvider;
@@ -103,7 +103,7 @@ namespace SynchroFeed.Listener
         /// <value>The service provider.</value>
         public IServiceProvider ServiceProvider { get; }
 
-        public ILogger Logger { get;}
+        public ILogger Logger { get; }
 
         /// <summary>
         /// Starts the service.
@@ -198,8 +198,8 @@ namespace SynchroFeed.Listener
                     receivedMessage = false;
                     var messageResponse = sqsClient.ReceiveMessage(receiveMessageRequest);
 
-                    if (messageResponse.HttpStatusCode == HttpStatusCode.OK 
-                        && messageResponse.Messages.Count > 0 
+                    if (messageResponse.HttpStatusCode == HttpStatusCode.OK
+                        && messageResponse.Messages.Count > 0
                         && !stopping)
                     {
                         receivedMessage = true;
@@ -221,7 +221,7 @@ namespace SynchroFeed.Listener
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Logger.LogError("Error processing message: {0}", ex);
                 }
@@ -255,7 +255,7 @@ namespace SynchroFeed.Listener
                         {
                             case EventType.Added:
                                 if (retrievedPackage == null)
-                                { 
+                                {
                                     retrievedPackage = action.SourceRepository.Fetch(t => t.Id == feedEvent.Package && t.Version == feedEvent.Version).FirstOrDefault();
                                 }
                                 if (retrievedPackage == null)
