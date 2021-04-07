@@ -166,7 +166,7 @@ namespace SynchroFeed.Listener
             Logger.LogDebug($"Getting SQS Queue: {AwsSettings.Sqs.Name}");
             Logger.LogDebug($"Using AWS Region: {AwsSettings.Sqs.Region}");
             sqsClient = new SQS.AmazonSQSClient(awsCredentials, RegionEndpoint.GetBySystemName(AwsSettings.Sqs.Region));
-            var queueUrlResponse = sqsClient.GetQueueUrl(AwsSettings.Sqs.Name);
+            var queueUrlResponse = AsyncTaskHelper.RunSync(() => sqsClient.GetQueueUrlAsync(AwsSettings.Sqs.Name));
             Logger.LogTrace($"SQS Queue Response[Status:{queueUrlResponse.HttpStatusCode}], [QueueUrl:{queueUrlResponse.QueueUrl}]");
             if (queueUrlResponse.HttpStatusCode != HttpStatusCode.OK)
             {
@@ -196,7 +196,7 @@ namespace SynchroFeed.Listener
                     if (receivedMessage)
                         Logger.LogTrace("Waiting for message from queue");
                     receivedMessage = false;
-                    var messageResponse = sqsClient.ReceiveMessage(receiveMessageRequest);
+                    var messageResponse = AsyncTaskHelper.RunSync(() => sqsClient.ReceiveMessageAsync(receiveMessageRequest));
 
                     if (messageResponse.HttpStatusCode == HttpStatusCode.OK
                         && messageResponse.Messages.Count > 0
@@ -292,7 +292,7 @@ namespace SynchroFeed.Listener
                     ReceiptHandle = messageResponseMessage.ReceiptHandle
                 };
                 Logger.LogTrace($"Deleting Message: {messageResponseMessage.ReceiptHandle}");
-                var deleteMessageResponse = sqsClient.DeleteMessage(deleteMessageRequest);
+                var deleteMessageResponse = AsyncTaskHelper.RunSync(() => sqsClient.DeleteMessageAsync(deleteMessageRequest));
                 if (deleteMessageResponse.HttpStatusCode == HttpStatusCode.OK)
                 {
                     Logger.LogTrace($"Delete Message: {messageResponseMessage.ReceiptHandle}");
