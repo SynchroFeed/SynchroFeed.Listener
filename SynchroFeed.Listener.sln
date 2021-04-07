@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynchroFeed.Listener", "src\SynchroFeed.Listener.csproj", "{F7A76039-329A-421F-9448-91876EB1E145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SynchroFeed.Listener", "src\SynchroFeed.Listener.csproj", "{F7A76039-329A-421F-9448-91876EB1E145}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{381BE444-DA65-4346-AB10-15F9A4115210}"
 	ProjectSection(SolutionItems) = preProject
