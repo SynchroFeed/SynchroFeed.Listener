@@ -254,17 +254,17 @@ namespace SynchroFeed.Listener
                         switch (feedEvent.Event)
                         {
                             case EventType.Added:
+
                                 if (retrievedPackage == null)
-                                {
-                                    retrievedPackage = action.SourceRepository.Fetch(t => t.Id == feedEvent.Package && t.Version == feedEvent.Version).FirstOrDefault();
-                                }
+                                    retrievedPackage = AsyncTaskHelper.RunSync(() => action.SourceRepository.FetchAsync(feedEvent.Package, feedEvent.Version));
+
                                 if (retrievedPackage == null)
                                 {
                                     Logger.LogWarning($"{feedEvent.Package}.{feedEvent.Version} not found in feed {feedEvent.Feed}. Ignoring.");
                                 }
                                 else
                                 {
-                                    action.ProcessPackage(retrievedPackage, PackageEvent.Added);
+                                    AsyncTaskHelper.RunSync(() => action.ProcessPackageAsync(retrievedPackage, PackageEvent.Added));
                                 }
                                 break;
                             case EventType.Deleted:
@@ -275,7 +275,7 @@ namespace SynchroFeed.Listener
                                     Id = feedEvent.Package,
                                     Version = feedEvent.Version
                                 };
-                                action.ProcessPackage(deletePackage, PackageEvent.Deleted);
+                                AsyncTaskHelper.RunSync(() => action.ProcessPackageAsync(deletePackage, PackageEvent.Deleted));
                                 break;
                         }
                     }
