@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -27,23 +27,23 @@
     <None Include="sample-App.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.3.58" />
-    <PackageReference Include="AWSSDK.SQS" Version="3.7.2.55" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.3.91" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.2.88" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
-    <PackageReference Include="SynchroFeed.Action.Process" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Action.Sync" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.ActionObserver.WebPost" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Command.ApplicationIs64bit" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Command.Catalog" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Command.ConfigReview" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Command.Log4netReview" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Command.NugetContainsSupportFiles" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Command.VersioningCheck" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Repository.Directory" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Repository.Npm" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Repository.Nuget" Version="2.0.3" />
-    <PackageReference Include="SynchroFeed.Repository.Proget" Version="2.0.3" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.5" />
+    <PackageReference Include="SynchroFeed.Action.Process" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Action.Sync" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.ActionObserver.WebPost" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Command.ApplicationIs64bit" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Command.Catalog" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Command.ConfigReview" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Command.Log4netReview" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Command.NugetContainsSupportFiles" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Command.VersioningCheck" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Repository.Directory" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Repository.Npm" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Repository.Nuget" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Repository.Proget" Version="3.0.0" />
     <PackageReference Include="Topshelf" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
