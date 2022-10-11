@@ -42,7 +42,7 @@
     <PackageReference Include="SynchroFeed.Command.VersioningCheck" Version="3.0.0" />
     <PackageReference Include="SynchroFeed.Repository.Directory" Version="3.0.0" />
     <PackageReference Include="SynchroFeed.Repository.Npm" Version="3.0.0" />
-    <PackageReference Include="SynchroFeed.Repository.Nuget" Version="3.0.0" />
+    <PackageReference Include="SynchroFeed.Repository.Nuget" Version="3.0.3" />
     <PackageReference Include="SynchroFeed.Repository.Proget" Version="3.0.0" />
     <PackageReference Include="Topshelf" Version="4.3.0" />
   </ItemGroup>
