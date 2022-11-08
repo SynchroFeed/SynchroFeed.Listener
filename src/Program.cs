@@ -34,6 +34,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NLog;
 using NLog.Extensions.Logging;
 using SynchroFeed.Library.DependencyInjection;
 using SynchroFeed.Library.Settings;
@@ -69,14 +70,16 @@ namespace SynchroFeed.Listener
         /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
-            var logFactory = new NLog.LogFactory();
-            var logger = logFactory.GetLogger("SynchroFeed.Listener.Program");
+            var logger = LogManager.GetCurrentClassLogger();
+
             logger.Log(NLog.LogLevel.Info, "SynchroFeed.Listener Starting");
             logger.Log(NLog.LogLevel.Debug, $"args length: {args.Length}");
+
             foreach (var arg in args)
             {
                 logger.Log(NLog.LogLevel.Debug, $"arg: {arg}");
             }
+
             var commandLineApp = new ListenerCommandLine();
             Environment.ExitCode = Execute(commandLineApp, logger);
         }
@@ -87,7 +90,7 @@ namespace SynchroFeed.Listener
         /// <param name="commandLineApp">The command line application containing the parsed command line parameters.</param>
         /// <param name="logger">The NLog logger instance.</param>
         /// <returns>System.Int32.</returns>
-        private static int Execute(ListenerCommandLine commandLineApp, NLog.Logger logger)
+        private static int Execute(ListenerCommandLine commandLineApp, Logger logger)
         {
             var rc = HostFactory.Run(x =>
             {
@@ -112,7 +115,7 @@ namespace SynchroFeed.Listener
                         }
                         finally
                         {
-                            NLog.LogManager.Shutdown();
+                            LogManager.Shutdown();
                         }
                     });
                 });
@@ -145,7 +148,7 @@ namespace SynchroFeed.Listener
                 });
             });
 
-            var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());  //11
+            var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());
             return exitCode;
         }
 
@@ -155,7 +158,7 @@ namespace SynchroFeed.Listener
         /// <param name="commandLineApp">The parsed command line arguments.</param>
         /// <param name="logger">The NLog logger instance.</param>
         /// <returns>Returns an instance of IHostBuilder.</returns>
-        private static IHostBuilder CreateHostBuilder(ListenerCommandLine commandLineApp, NLog.Logger logger)
+        private static IHostBuilder CreateHostBuilder(ListenerCommandLine commandLineApp, Logger logger)
         {
             var builder = new HostBuilder()
                 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -175,7 +178,6 @@ namespace SynchroFeed.Listener
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddOptions();
-                    services.AddLogging();
                     services.AddSingleton(commandLineApp);
                     services.Configure<ApplicationSettings>(hostContext.Configuration.GetSection("FeedSettings"));
                     services.Configure<Settings.AwsSettings>(hostContext.Configuration.GetSection("AwsSettings"));
@@ -185,7 +187,8 @@ namespace SynchroFeed.Listener
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
-                    logging.SetMinimumLevel(LogLevel.Trace);
+                    logging.ClearProviders();
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
                     logging.AddNLog();
                 });
 

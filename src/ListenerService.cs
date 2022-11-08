@@ -178,7 +178,7 @@ namespace SynchroFeed.Listener
         }
 
         /// <summary>
-        /// The main entrypoint for the thread that listens to messages.
+        /// The main entry point for the thread that listens to messages.
         /// </summary>
         private void AWSMessageListener()
         {
@@ -244,7 +244,7 @@ namespace SynchroFeed.Listener
                     Logger.LogTrace($"Found Action ({actionableAction.Name}) for {feedEvent.Feed}");
                     if (feedEvent.Version.IsPrerelease() && !actionableAction.IncludePrerelease)
                     {
-                        Logger.LogDebug($"{actionableAction.Name} is ignoring prelease package ({feedEvent.Package}.{feedEvent.Version})");
+                        Logger.LogDebug($"{actionableAction.Name} is ignoring pre-release package ({feedEvent.Package}.{feedEvent.Version})");
                         continue;
                     }
 
