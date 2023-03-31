@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
@@ -27,7 +27,7 @@
     <None Include="sample-App.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.101.37" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.101.38" />
     <PackageReference Include="AWSSDK.SQS" Version="3.7.100.101" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.2.3" />
