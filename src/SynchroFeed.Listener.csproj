@@ -42,7 +42,7 @@
     <PackageReference Include="SynchroFeed.Repository.Directory" Version="3.1.2" />
     <PackageReference Include="SynchroFeed.Repository.Npm" Version="3.1.1" />
     <PackageReference Include="SynchroFeed.Repository.Nuget" Version="3.1.1" />
-    <PackageReference Include="SynchroFeed.Repository.Proget" Version="3.1.1" />
+    <PackageReference Include="SynchroFeed.Repository.Proget" Version="3.1.2" />
     <PackageReference Include="Topshelf" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
