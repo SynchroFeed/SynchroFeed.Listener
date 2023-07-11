@@ -254,6 +254,7 @@ namespace SynchroFeed.Listener
                         switch (feedEvent.Event)
                         {
                             case EventType.Added:
+                            case EventType.Promoted:
 
                                 if (retrievedPackage == null)
                                     retrievedPackage = AsyncTaskHelper.RunSync(() => action.SourceRepository.FetchAsync(feedEvent.Package, feedEvent.Version));
