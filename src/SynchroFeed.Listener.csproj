@@ -28,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.200.22" />
-    <PackageReference Include="AWSSDK.SQS" Version="3.7.200.23" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.200.24" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.3" />
     <PackageReference Include="SynchroFeed.Action.Process" Version="3.1.3" />
