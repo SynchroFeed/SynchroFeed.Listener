@@ -27,7 +27,7 @@
     <None Include="sample-App.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.200.25" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.200.26" />
     <PackageReference Include="AWSSDK.SQS" Version="3.7.200.27" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.3" />
